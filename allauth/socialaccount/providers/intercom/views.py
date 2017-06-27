@@ -15,12 +15,12 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
 
     def complete_login(self, request, app, token, **kwargs):
         # This is a hack until intercom lets us know the profile url to use
-        raise NotImplementedError
         response = {}
 
         from allauth.socialaccount.models import SocialLogin, SocialAccount
 
         adapter = get_adapter(request)
+        raise NotImplementedError
         uid = self.extract_uid(response)
         extra_data = self.extract_extra_data(response)
         common_fields = self.extract_common_fields(response)
