@@ -27,6 +27,7 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
             socialaccount = SocialAccount(extra_data=extra_data,
                                           uid=uid,
                                           provider=self.id)
+            raise Exception
             email_addresses = self.extract_email_addresses(response)
             self.cleanup_email_addresses(common_fields.get('email'),
                                          email_addresses)
@@ -38,9 +39,6 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
             return sociallogin
         except Exception as e:
             raise e
-
-    def render_authentication_error(self, request, provider_id, exception):
-        raise exception
 
 oauth2_login = OAuth2LoginView.adapter_view(IntercomOAuth2Adapter)
 oauth2_callback = OAuth2CallbackView.adapter_view(IntercomOAuth2Adapter)
