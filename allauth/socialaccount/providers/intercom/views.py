@@ -20,10 +20,10 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
         from allauth.socialaccount.models import SocialLogin, SocialAccount
 
         adapter = get_adapter(request)
-        raise NotImplementedError
         uid = self.extract_uid(response)
         extra_data = self.extract_extra_data(response)
         common_fields = self.extract_common_fields(response)
+        raise NotImplementedError
         socialaccount = SocialAccount(extra_data=extra_data,
                                       uid=uid,
                                       provider=self.id)
