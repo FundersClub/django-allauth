@@ -1,3 +1,6 @@
+import random
+import string
+
 from allauth.socialaccount.providers.oauth2.views import (
     OAuth2Adapter,
     OAuth2CallbackView,
@@ -20,7 +23,9 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
         from allauth.socialaccount.models import SocialLogin, SocialAccount
 
         adapter = get_adapter(request)
-        uid = self.extract_uid(response)
+        uid = str(''.join(
+            [random.choice(string.ascii_uppercase + string.ascii_lowercase) for _ in range(30)]
+        ))
         extra_data = self.extract_extra_data(response)
         common_fields = self.extract_common_fields(response)
         raise NotImplementedError
