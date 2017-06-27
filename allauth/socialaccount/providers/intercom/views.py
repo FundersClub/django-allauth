@@ -33,7 +33,6 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
                                       provider='intercom')
         sociallogin = SocialLogin(account=socialaccount,
                                   email_addresses=[''])
-        raise NotImplementedError
         user = sociallogin.user = adapter.new_user(request, sociallogin)
         user.set_unusable_password()
         adapter.populate_user(request, sociallogin, common_fields)
