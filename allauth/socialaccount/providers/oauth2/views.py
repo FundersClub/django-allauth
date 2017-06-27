@@ -145,6 +145,7 @@ class OAuth2CallbackView(OAuth2View):
                 OAuth2Error,
                 RequestException,
                 ProviderException) as e:
+            raise e
             return render_authentication_error(
                 request,
                 self.adapter.provider_id,
