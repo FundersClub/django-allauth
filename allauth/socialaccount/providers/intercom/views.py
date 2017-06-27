@@ -12,7 +12,7 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
     access_token_url = 'https://api.intercom.io/auth/eagle/token'
     authorize_url = 'https://app.intercom.io/oauth'
 
-    def complete_login(self, request, app, access_token, **kwargs):
+    def complete_login(self, request, app, token, **kwargs):
         # This is a hack until intercom lets us know the profile url to use
         return self.get_provider().sociallogin_from_response(request, {})
 

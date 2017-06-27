@@ -11,5 +11,9 @@ class IntercomProvider(OAuth2Provider):
     name = 'Intercom'
     account_class = IntercomAccount
 
+    def extract_uid(self, data):
+        # This is a hack until intercom lets us know what API to use
+        return str(data['token'])
+
 
 provider_classes = [IntercomProvider]

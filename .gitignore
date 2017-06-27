@@ -30,3 +30,5 @@ virtualenv
 *.prefs
 *.mo
 /.stfolder
+
+*.swp
