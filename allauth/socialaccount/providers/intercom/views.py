@@ -20,11 +20,11 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
 
             from allauth.socialaccount.models import SocialLogin, SocialAccount
 
+            raise Exception
             adapter = get_adapter(request)
             uid = self.extract_uid(response)
             extra_data = self.extract_extra_data(response)
             common_fields = self.extract_common_fields(response)
-            raise Exception
             socialaccount = SocialAccount(extra_data=extra_data,
                                           uid=uid,
                                           provider=self.id)
