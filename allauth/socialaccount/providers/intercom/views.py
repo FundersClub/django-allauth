@@ -26,12 +26,12 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
         uid = str(''.join(
             [random.choice(string.ascii_uppercase + string.ascii_lowercase) for _ in range(30)]
         ))
-        extra_data = self.extract_extra_data(response)
-        common_fields = self.extract_common_fields(response)
-        raise NotImplementedError
+        extra_data = {}
+        common_fields = {}
         socialaccount = SocialAccount(extra_data=extra_data,
                                       uid=uid,
                                       provider=self.id)
+        raise NotImplementedError
         email_addresses = self.extract_email_addresses(response)
         self.cleanup_email_addresses(common_fields.get('email'),
                                      email_addresses)
