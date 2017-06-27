@@ -39,5 +39,8 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
         except Exception as e:
             raise e
 
+    def render_authentication_error(self, request, provider_id, exception):
+        raise exception
+
 oauth2_login = OAuth2LoginView.adapter_view(IntercomOAuth2Adapter)
 oauth2_callback = OAuth2CallbackView.adapter_view(IntercomOAuth2Adapter)
