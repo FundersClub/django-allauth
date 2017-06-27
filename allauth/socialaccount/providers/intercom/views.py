@@ -18,6 +18,7 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
         response = {}
 
         from allauth.socialaccount.models import SocialLogin, SocialAccount
+        raise NotImplementedError
 
         adapter = get_adapter(request)
         uid = self.extract_uid(response)
@@ -26,7 +27,6 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
         socialaccount = SocialAccount(extra_data=extra_data,
                                       uid=uid,
                                       provider=self.id)
-        raise NotImplementedError
         email_addresses = self.extract_email_addresses(response)
         self.cleanup_email_addresses(common_fields.get('email'),
                                      email_addresses)
