@@ -30,13 +30,10 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
         common_fields = {}
         socialaccount = SocialAccount(extra_data=extra_data,
                                       uid=uid,
-                                      provider=self.id)
-        raise NotImplementedError
-        email_addresses = self.extract_email_addresses(response)
-        self.cleanup_email_addresses(common_fields.get('email'),
-                                     email_addresses)
+                                      provider='intercom')
         sociallogin = SocialLogin(account=socialaccount,
-                                  email_addresses=email_addresses)
+                                  email_addresses=[''])
+        raise NotImplementedError
         user = sociallogin.user = adapter.new_user(request, sociallogin)
         user.set_unusable_password()
         adapter.populate_user(request, sociallogin, common_fields)
