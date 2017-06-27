@@ -4,7 +4,7 @@ from allauth.socialaccount.providers.oauth2.views import (
     OAuth2LoginView,
 )
 
-from ..adapter import get_adapter
+from ...adapter import get_adapter
 from .provider import IntercomProvider
 
 
