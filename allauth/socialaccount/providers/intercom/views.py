@@ -14,8 +14,10 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
 
     def complete_login(self, request, app, token, **kwargs):
         # This is a hack until intercom lets us know the profile url to use
-        return self.get_provider().sociallogin_from_response(request, {})
-
+        try:
+            return self.get_provider().sociallogin_from_response(request, {})
+        except Exception as e:
+            raise e
 
 oauth2_login = OAuth2LoginView.adapter_view(IntercomOAuth2Adapter)
 oauth2_callback = OAuth2CallbackView.adapter_view(IntercomOAuth2Adapter)
