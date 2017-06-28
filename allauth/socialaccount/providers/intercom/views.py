@@ -30,7 +30,7 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
                                       uid=uid,
                                       provider='intercom')
         sociallogin = SocialLogin(account=socialaccount,
-                                  email_addresses=[None])
+                                  email_addresses=[])
         user = sociallogin.user = adapter.new_user(request, sociallogin)
         user.set_unusable_password()
         adapter.populate_user(request, sociallogin, common_fields)
