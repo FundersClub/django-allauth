@@ -18,8 +18,6 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
 
     def complete_login(self, request, app, token, **kwargs):
         # This is a hack until intercom lets us know the profile url to use
-        response = {}
-
         from allauth.socialaccount.models import SocialLogin, SocialAccount
 
         adapter = get_adapter(request)
@@ -32,7 +30,7 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
                                       uid=uid,
                                       provider='intercom')
         sociallogin = SocialLogin(account=socialaccount,
-                                  email_addresses=[''])
+                                  email_addresses=[None])
         user = sociallogin.user = adapter.new_user(request, sociallogin)
         user.set_unusable_password()
         adapter.populate_user(request, sociallogin, common_fields)
