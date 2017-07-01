@@ -16,9 +16,11 @@ class IntercomOAuth2Adapter(OAuth2Adapter):
     profile_url = 'https://api.intercom.io/me'
 
     def complete_login(self, request, app, token, **kwargs):
-        resp = requests.get(self.profile_url,
-                            params={'Accept': 'application/json',
-                                    'Authorization': 'Bearer {0}'.format(token.token)})
+        headers = {
+            'Accept': 'application/json',
+            'Authorization': 'Bearer {0}'.format(token.token)
+        }
+        resp = requests.get(self.profile_url, headers=headers)
         return self.get_provider().sociallogin_from_response(request, resp.json())
 
 oauth2_login = OAuth2LoginView.adapter_view(IntercomOAuth2Adapter)
